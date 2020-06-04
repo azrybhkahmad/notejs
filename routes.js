@@ -9,9 +9,11 @@ const requestHandler = (req, res) => {
     res.write(
       '<body><form action="/message" method="POST"><input type="text" name="message"><button type="submit">Send</button></form></body>'
     );
-    res.write('</html>');
-    return res.end();
-  }
+      res.write('</html>');
+      return  res.end();
+    }
+
+
   if (url === '/message' && method === 'POST') {
     const body = [];
     req.on('data', chunk => {
@@ -47,4 +49,4 @@ const requestHandler = (req, res) => {
 // module.exports.someText = 'Some text';
 
 exports.handler = requestHandler;
-exports.someText = 'Some hard coded text';
+exports.someText = 'HOW TEST TESETT RONALDO';
