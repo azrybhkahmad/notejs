@@ -3,9 +3,9 @@ const http = require('http');
 const server = http.createServer((request, response) => {
   // request URL (whatever the user enter after 'localhost:3123')
     const url = request.url
-    // example below (localhost:3123/)
+    // if the url is localhost:3123/
         if (url === '/') {
-          // start of html
+          // then html start
         response.write('<html>');
         response.write('<head><title>Username Assignment</title></head>');
         // Creating of form in the website
@@ -14,10 +14,9 @@ const server = http.createServer((request, response) => {
     }
     if (url === '/users') {
         response.setHeader('Content-Type', 'text/html');
-        // start of html
         response.write ('<html>');
         response.write ('<head>Username assignment</head>');
-        response.write ('<body><ul><li>User 1<li><li>User 2</li></ul></body>');
+        response.write ('<body><ul><li>User 1</li><li>User 2</li></ul></body>');
         response.write ('</html>');
         // end request
         return response.end();
@@ -40,4 +39,4 @@ const server = http.createServer((request, response) => {
       }
 });
 
-server.listen(3000);
+server.listen(3123);
