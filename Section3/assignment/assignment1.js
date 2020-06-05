@@ -1,43 +1,43 @@
 const http = require('http');
 
-const server =http.createServer((req, res) => {
+const server = http.createServer((request, response) => {
   // request URL (whatever the user enter after 'localhost:3123')
-    const url = req.url
+    const url = request.url
     // example below (localhost:3123/)
         if (url === '/') {
           // start of html
-        res.write('<html>');
-        res.write('<head>Username assignment</head>');
+        response.write('<html>');
+        response.write('<head><title>Username Assignment</title></head>');
         // Creating of form in the website
-        res.write('<body><form action="/create-user" method="POST"><input type="text" name="username"><button type="submit">Submit</button>');
-        res.write('</html>');
+        response.write('<body><form action="/create-user" method="POST"><input type="text" name="username"><button type="submit">Submit</button>');
+        response.write('</html>');
     }
     if (url === '/users') {
-        res.setHeader('Content-Type', 'text/html');
+        response.setHeader('Content-Type', 'text/html');
         // start of html
-        res.write ('<html>');
-        res.write ('<head>Username assignment</head>');
-        res.write ('<body><ul><li>User 1<li><li>User 2</li></ul></body>');
-        res.write ('</html>');
+        response.write ('<html>');
+        response.write ('<head>Username assignment</head>');
+        response.write ('<body><ul><li>User 1<li><li>User 2</li></ul></body>');
+        response.write ('</html>');
         // end request
-        return res.end();
+        return response.end();
     }
     if (url === '/create-user') {
         const body = [];
-        req.on('data', chunk => {
+        request.on('data', chunk => {
           body.push(chunk);        
         });
         
-        req.on('end', () => {
+        request.on('end', () => {
           const parsedBody = Buffer.concat(body).toString();
           // username=(*data user entered)
           console.log(parsedBody.split('=')[1]); 
           
         });
-        res.statusCode = 302;
-        res.setHeader('Location', '/');
-        res.end();
+        response.statusCode = 302;
+        response.setHeader('Location', '/');
+        response.end();
       }
 });
 
-server.listen(3123);
+server.listen(3000);
