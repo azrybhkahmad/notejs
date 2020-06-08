@@ -21,6 +21,7 @@ const server = http.createServer((request, response) => {
         // end request
         return response.end();
     }
+    
     if (url === '/create-user') {
         const body = [];
         request.on('data', chunk => {
